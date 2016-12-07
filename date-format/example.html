@@ -9,20 +9,40 @@
     <br />
     <select id="current_date_template">
         <option value="">default</option>
-        <option value="DD_MM_YYYY_WITH_SLASH">dd/MM/yyyy</option>
-        <option value="DD_MM_YY_WITH_SLASH">dd/MM/yy</option>
-        <option value="DD_MM_YYYY_WITH_DASHES">dd-MM-yyyy</option>
-        <option value="DD_MM_YY_WITH_DASHES">dd-MM-yy</option>
+        <option value="dd/MM/yyyy">dd/MM/yyyy</option>
+        <option value="dd/MM/yy">dd/MM/yy</option>
+        <option value="dd-MM-yyyy">dd-MM-yyyy</option>
+        <option value="dd-MM-yy">dd-MM-yy</option>
     </select>
     <button id="current_date_format">format</button> | <span id="current_date_result"></span>
+
+    <hr style="width: 90%; margin: 0;"/>
+
+    current date from passed template
+    <br />
+    <input id="current_date_template_passed" />
+    <button id="current_date_format_passed">format</button> | <span id="current_date_result_passed"></span>
 
     <hr style="width: 90%; margin: 0;"/>
 
     <script src="date.format.js"></script>
     <script>
         currentDate();
+        currentDatePassed();
 
         function currentDate(){
+            var select = document.getElementById('current_date_template_passed');
+            var button = document.getElementById('current_date_format_passed');
+            var result = document.getElementById('current_date_result_passed');
+
+            button.addEventListener('click', function(){
+                var template = select.value;
+
+                result.innerText = new Date().format(template);
+            });
+        }
+
+        function currentDatePassed(){
             var select = document.getElementById('current_date_template');
             var button = document.getElementById('current_date_format');
             var result = document.getElementById('current_date_result');

@@ -28,25 +28,28 @@
             year = d.getYear(),
             seconds = d.getSeconds(),
             minutes = d.getMinutes(),
-            hours = d.getHours();
-
-        var a = {
-            date: date,
-            month: month,
-            year: year,
-            seconds: seconds,
-            minutes: minutes,
-            hours: hours
-        };
+            hours = d.getHours(),
+            hours_s = (hours > 12 ? hours - 12 : hours);
 
         var params = {
-            MMMM: MONTH[locale].long[month],
-            MMM: MONTH[locale].short[month],
-            MM: prepend(month + 1, 2),
-            M: month + 1,
             yyyy: 1900 + year,
             yy: (1900 + year + '').substr(2),
             dd: date,
+            d: (date > 9 ? date : '0'+date),
+            HH: (hours > 9 ? hours : '0'+hours),
+            H: hours,
+            hh: (hours_s > 9 ? hours_s : '0' + hours_s),
+            h: hours_s,
+            mm: (minutes > 9 ? minutes : '0' + minutes),
+            m: minutes,
+            ss: (minutes > 9 ? minutes : '0' + minutes),
+            s: seconds,
+            a: (hours < 12 ? 'am' : 'pm'),
+
+            MMMM: MONTH[locale].long[month],
+            MMM: MONTH[locale].short[month],
+            MM: (month > 8 ? month+1 : '0'+(1+month)),
+            M: month + 1,
             EEEE: DAYS[locale].long[day],
             EEE: DAYS[locale].short[day]
         };
@@ -58,25 +61,6 @@
         return template;
     };
 
-    /**
-     * prepend zeros(0) to the beginning of the the string
-     *
-     * @param value - string should be changed
-     * @param required_length - max length of string
-     * @returns {string}
-     */
-    function prepend(value, required_length) {
-        if (typeof value !== 'string')
-            value = value + '';
-
-        var diff = value.length - required_length,
-            prefix = '';
-
-        for (var i = 0; i < diff; ++i)
-            prefix += '0';
-
-        return prefix + value;
-    }
 
     var LOCALES = ['uk', 'en'];
 
@@ -85,8 +69,8 @@
             short: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             long: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
         }, uk: {
-            short: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-            long: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            short: ["Січ", "Лют", "Бер", "Кві", "Тра", "Бер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру"],
+            long: ["Січеня", "Лютого", "Березеня", "Квітеня", "Травеня", "Червеня", "Липеня", "Серпеня", "Вересеня", "Жовтежя", "Листопада", "Груденя"]
         }
     };
 
@@ -95,8 +79,8 @@
             short: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
             long: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
         }, uk: {
-            short: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-            long: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            short: ["Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+            long: ["Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "Пятниця", "Субота"]
         }
     };
 })();
