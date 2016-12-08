@@ -19,3 +19,7 @@
 * 'm': Minute in hour (0-59)
 * 'ss': Second in minute, padded (00-59)
 * 's': Second in minute (0-59)
+
+
+gets info from
+https://docs.angularjs.org/api/ng/filter/date - templates from angular
