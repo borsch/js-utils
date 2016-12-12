@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="src/jquery.js"></script>
+	<script src="src/autocomplete.tags.js"></script>
+
+	<link rel="stylesheet" href="css/autocomplete.tag.css">
+</head>
+<body>
+<div id="tagsContainer"></div>
+<label>Enter text: <input type="text"></label>
+<button>Get Items</button>
+<script type="text/javascript">
+	var a = new Autocomplete(
+            {
+                input: $('input'),
+                tagsOnStart: [{value: 'test'}],
+                tagsContainer: $('#tagsContainer'),
+                getSuggestions: function(value){
+                    $.ajax({
+                        url:'https://api.teleport.org/api/cities/?search='+value+',%20Tex,%20United%20States	',
+                        success: function(data){
+                            var cities = data._embedded['city:search-results'];
+                            var result = [];
+                            for(var i = 0; i < cities.length; ++i){
+                                result.push(cities[i]);
+                                result[i].value = cities[i].matching_full_name;
+                            }
+                            a.call('setSuggestions', result);
+                        }
+                    });
+                },
+                onTagRemove: function(tag){
+
+                }
+            }
+    );
+
+	$('button').click(function(){
+		console.log(a.getItems());
+	});
+</script>
+</body>
+</html>

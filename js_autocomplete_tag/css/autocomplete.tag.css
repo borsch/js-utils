@@ -1,0 +1,42 @@
+.suggestions-list{
+	border: 1px solid;
+	max-height: 120px;
+	background: #ccc;
+	z-index: 400;
+	overflow-y: scroll;
+}
+
+.suggestion-item-class{
+	margin: 2px;
+	cursor: pointer;
+}
+
+.selected-item{
+	background: green;
+}
+
+.tag-container{
+	height: 50px; 
+}
+
+input{
+	margin-top: 150px;
+}
+
+.remove-tag{
+	padding: 1px;
+	border: 1px solid #ccc;
+	background: #ccc;
+	border-radius: 3px;
+}
+
+.tag {
+	padding: 5px;
+	background: #696969;
+	margin-right: 4px;
+	border-radius: 5px;
+}
+
+input {
+	width: 200px;
+}
