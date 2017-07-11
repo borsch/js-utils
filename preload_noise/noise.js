@@ -4,8 +4,8 @@
 	const preload_noise = '<div id="pn" style="background-image:url(noise.gif);opacity:0.3;' + style + 'z-index:100000000;"></div>';
 	const preload_noise_background = '<div id="pnb" style="background-color:#ccc;' + style + 'z-index:10000000;"></div>';
 
-	var d = document;
-	var id = 'getElementById';
+	var d = document,
+		id = 'getElementById';
 
 	exports.add = function(noise_image_path) {
 		var body = d.getElementsByTagName('body')[0];
