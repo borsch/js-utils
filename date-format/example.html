@@ -27,6 +27,14 @@
 
     <script src="date.format.js"></script>
     <script>
+        Date.add_locale('ru', {
+            short: ["Янв", "Февр", "Март", "Апр", "Май", "Июнь", "Июль", "Авг", "Сент", "Октб", "Нояб", "Дек"],
+            long: ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сетябрь", "Октябрь", "Ноябрь", "Декабрь"]
+        }, {
+            short: ["Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб"],
+            long: ["Воскресенье", "Понедельник", "Вторник", "Среда", "Чеверг", "Пятница", "Суббота"]
+        });
+
         currentDate();
         currentDatePassed();
 
@@ -38,7 +46,7 @@
             button.addEventListener('click', function(){
                 var template = select.value;
 
-                result.innerText = new Date().format(template);
+                result.innerText = new Date().format(template, 'ru');
             });
         }
 
@@ -50,7 +58,7 @@
             button.addEventListener('click', function(){
                 var template = select.value;
 
-                result.innerText = new Date().format(template);
+                result.innerText = new Date().format(template, 'ru');
             });
         }
     </script>

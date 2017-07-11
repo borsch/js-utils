@@ -6,7 +6,7 @@
     const DEFAULT_FORMAT_TEMPLATE = 'dd EEE MMM yyyy';
 
     /**
-     * format date with passing template
+     * @desc format date with passed template
      *
      * @param [template] {string} - template for date
      * @param [locale] {string} - locale for names of week and month. default is 'en'
@@ -61,6 +61,22 @@
         return template;
     };
 
+    /**
+     * @description add new localized days and month
+     *
+     * @param locale {string} - locale name
+     * @param months {object} - object with long and short month names
+     * @param days {object} - object with long and short day names
+     */
+    Date.add_locale = function(locale, months, days) {
+        if (LOCALES.indexOf(locale) > -1) {
+            throw new Error('this locale already implemented');
+        }
+
+        LOCALES.push(locale);
+        MONTH[locale] = months;
+        DAYS[locale] = days;
+    };
 
     var LOCALES = ['uk', 'en'];
 
